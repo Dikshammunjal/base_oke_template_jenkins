@@ -43,5 +43,6 @@ spec:
   type: ClusterIP
   ports:
   - port: changeport
+    targetport: changeport
   selector:
     app: changedeploymentname
