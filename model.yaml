@@ -47,4 +47,5 @@ appDeployments:
     sample:
       SourcePath: 'wlsdeploy/applications/employees.war'
       Target: 'wls1-cluster'
+      StagingMode: stage
       ModuleType: war						 
