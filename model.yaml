@@ -1,0 +1,50 @@
+resources:
+  JDBCSystemResource:
+    demoPoolATP:
+      Target: 'wls1-cluster'
+      DescriptorFileName: 'jdbc/demoPoolATP-3342-jdbc.xml'
+      JdbcResource:
+        DatasourceType: GENERIC
+        JDBCConnectionPoolParams:
+          StatementCacheSize: 10
+          InitialCapacity: 1
+          MinCapacity: 1
+          TestTableName: SQL ISVALID
+          StatementCacheType: LRU
+          MaxCapacity: 15
+        JDBCDataSourceParams:
+          GlobalTransactionsProtocol: OnePhaseCommit
+          JNDIName: demoPool
+        JDBCDriverParams:
+          URL: 'jdbc:oracle:thin:@atp1_tp'
+          PasswordEncrypted: 'Welcome@1234'
+          DriverName: oracle.jdbc.OracleDriver
+          Properties:
+            user:
+              Value: 'admin'
+            oracle.jdbc.fanEnabled:
+              Value: 'false'
+            oracle.net.tns_admin:
+              Value: '/u01/shared/atp/wallet/Wallet_ATP1'
+            javax.net.ssl.keyStoreType:
+              Value: 'JKS'
+            javax.net.ssl.trustStoreType:
+              Value: 'JKS'
+            javax.net.ssl.trustStore:
+              Value: '/u01/shared/atp/wallet/Wallet_ATP1/truststore.jks'
+            javax.net.ssl.keyStore:
+              Value: '/u01/shared/atp/wallet/Wallet_ATP1/keystore.jks'
+            javax.net.ssl.keyStorePassword:
+              Value: 'Welcome@1234'
+            javax.net.ssl.trustStorePassword:
+              Value: 'Welcome@1234'
+            oracle.net.ssl_server_dn_match:
+              Value: 'true'
+            oracle.net.wallet_location:
+              Value: '/u01/shared/atp/wallet/Wallet_ATP1'
+appDeployments:
+  Application:
+    sample:
+      SourcePath: 'wlsdeploy/applications/employees.war'
+      Target: 'wls1-cluster'
+      ModuleType: war						 
