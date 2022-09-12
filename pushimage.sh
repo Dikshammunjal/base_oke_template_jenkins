@@ -9,7 +9,7 @@ IMAGE=$6
 
 export local_REGISTRY_TOKEN=`echo $PASSWORD | sed 's/[!@#$%^&*()-]/\\\&/g'`
 
-docker login -u ''$USERNAME'' -p ''${local_REGISTRY_TOKEN}'' ''$REGION''.ocir.io
+docker login -u ''$USERNAME'' -p ${local_REGISTRY_TOKEN} ''$REGION''.ocir.io
 
 docker tag ''$MS'':''$GITCOMMIT'' ''$IMAGE''
 
